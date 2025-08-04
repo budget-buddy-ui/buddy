@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Budget Buddy </title>
+  <style>
+    body {
+      font-family: 'Bubblegum Sans', nuito, sans-serif;
+      background: linear-gradient(to bottom right, #e6e6fa, #f3e5f5), url('https://example.com/your-background-image.jpg'); /* Lavender gradient with background image */
+      background-size: cover; /* Cover the entire body */
+      background-position: center; /* Center the background image */
+      margin: 0;
+      padding: 0;
+      color: #333;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      position: relative; /* For layout */
+      animation: backgroundAnimation 10s infinite alternate; /* Dynamic background animation */
+    }
+
+    @keyframes backgroundAnimation {
+      0% { background-color: #e6e6fa; }
+      100% { background-color: #f3e5f5; }
+    }
+
+    header {
+      background-color: rgba(230, 230, 250, 0.9); /* Semi-transparent lavender color */
+      color: #4b0082; /* Darker shade for contrast */
+      text-align: center;
+      padding: 30px; /* Increased padding for desktop */
+      border-bottom: 5px solid #d8bfd8; /* Light lavender */
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px; /* Consistent padding */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section {
+      margin: 20px 0; /* Increased margin for desktop */
+      padding: 20px; /* Increased padding for desktop */
+      background: rgba(243, 229, 245, 0.9); /* Semi-transparent light lavender */
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 600px; /* Maintain max-width for desktop */
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .section:hover {
+      transform: scale(1.05); /* Enhanced scale effect for desktop */
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      color: #9370db; /* Medium purple */
+      font-size: 2.5em; /* Adjusted font size for desktop */
+      text-align: center;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    p, li {
+      font-size: 1.2em; /* Adjusted font size for desktop */
+      line-height: 1.5;
+    }
+    .qr-section img {
+      display: block;
+      margin: 15px auto;
+      border: 2px solid #9370db; /* Medium purple */
+      border-radius: 10px;
+      width: 100%; /* Make QR code responsive */
+      max-width: 160px; /* Limit max width for QR code */
+      transition: transform 0.3s;
+    }
+    .qr-section img:hover {
+      transform: rotate(10deg); /* Rotate effect on hover */
+    }
+    footer {
+      background-color: rgba(230, 230, 250, 0.9); /* Semi-transparent lavender color */
+      color: #4b0082; /* Darker shade for contrast */
+      text-align: center;
+      padding: 20px; /* Increased padding for desktop */
+      border-radius: 10px;
+      margin-top: 20px;
+      position: relative;
+      animation: slideIn 1s ease-in-out;
+    }
+    footer p {
+      margin: 0;
+      font-size: 1em; /* Adjusted font size for desktop */
+    }
+    .fun-facts {
+      background: rgba(243, 229, 245, 0.9); /* Semi-transparent light lavender */
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px; /* Reduced padding for mobile */
+      }
+      .section {
+        margin: 10px 0; /* Reduced margin for mobile */
+        padding: 15px; /* Reduced padding for mobile */
+        max-width: 90%; /* Adjusted max-width for mobile */
+      }
+      h2 {
+        font-size: 2em; /* Further reduce font size for smaller screens */
+      }
+      p, li {
+        font-size: 1em; /* Further reduce font size for smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="font-size: 3em; color: #4b0082; text-shadow: 2px 2px 4px #e6e6fa;">🐷 Budget Buddy</h1>
+    <p style="font-size: 1.5em; color: #4b0082; font-weight: bold;">Helping Kids Become Money Smart!</p>
+  </header>
+
+  <main class="container">
+    <section class="section" id="about">
+      <h2>🌟 What is Budget Buddy?</h2>
+      <p>Welcome to Budget Buddy! 🎉 It's a super fun web app designed! Learn how to manage your allowance, save for awesome toys, and keep track of your spending. Think of it as your very own piggy bank coach! 💰</p>
+    </section>
+
+    <section class="section" id="how">
+      <h2>📚 How to Use Budget Buddy</h2>
+      <ol>
+        <li>Click the link or scan the QR code to open Budget Buddy.</li>
+        <li>Enter how much money you get each week. 💵</li>
+        <li>Write down what you buy — like snacks, toys, or games! 🍭</li>
+        <li>Set fun goals for saving, like a new puzzle or bike! 🚲</li>
+        <li>Check how much you're saving and feel proud! 🎊</li>
+      </ol>
+    </section>
+
+    <section class="section qr-section" id="qr">
+      <h2>📱 Try Budget Buddy Now!</h2>
+      <p>Scan this code with your phone or tablet to get started:</p>
+      <img src="img/QR.jpg" alt="Budget Buddy QR Code" />
+    </section>
+
+    <section class="section" id="questions">
+      <h2>Fun Questions to Think About ❓ </h2>
+      <ul>
+        <li>What do you want to save up for? 🎁</li>
+        <li>What was your smartest purchase? 🧠</li>
+        <li>If you had 100 coins, what would you do? 💰</li>
+        <li>Can you beat last week's savings? 🏆</li>
+        <li>What's a cool money goal to reach this month? 🌈</li>
+      </ul>
+    </section>
+
+    <section class="section fun-facts">
+      <h2>🎉 Fun Facts About Money!</h2>
+      <ul>
+        <li>Did you know that saving just a little bit each week can add up to a lot? 💸</li>
+        <li>Every dollar saved is a step closer to your dream toy! 🧸</li>
+        <li>Money can be fun to manage when you have a plan! 📊</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with 💙 by Budget Buddy for smart little savers everywhere!</p>
+  </footer>
+</body>
+</html>
