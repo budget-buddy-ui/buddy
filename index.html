@@ -3,178 +3,509 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎉 Budget Buddy </title>
+  <title>🎉 Budget Buddy - Your Money Adventure! 🎉</title>
+  <!-- Google Fonts for playful typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for fun icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* Add smooth scroll behavior to the html element */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* General Reset & Base Styles */
     body {
-      font-family: 'Bubblegum Sans', nunito, sans-serif;
-      background: linear-gradient(to bottom right, #e6e6fa, #f3e5f5), url('https://example.com/your-background-image.jpg'); /* Lavender gradient with background image */
-      background-size: cover; /* Cover the entire body */
-      background-position: center; /* Center the background image */
+      font-family: 'Nunito', sans-serif; /* Friendly, readable font for body */
+      /* Updated background to include lavender */
+      background: linear-gradient(to bottom right, #e6e6fa, #c9ffbf, #a8e0ff); /* Lavender, light green, sky blue */
+      background-size: cover;
+      background-position: center;
       margin: 0;
       padding: 0;
       color: #333;
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      position: relative; /* For layout */
-      animation: backgroundAnimation 10s infinite alternate; /* Dynamic background animation */
+      overflow-x: hidden; /* Keep this to prevent horizontal scrollbar */
+      position: relative;
+      line-height: 1.6;
     }
 
-    @keyframes backgroundAnimation {
-      0% { background-color: #e6e6fa; }
-      100% { background-color: #f3e5f5; }
-    }
-
-    header {
-      background-color: rgba(230, 230, 250, 0.9); /* Semi-transparent lavender color */
-      color: #4b0082; /* Darker shade for contrast */
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Bubblegum Sans', cursive; /* Playful, rounded font for headings */
       text-align: center;
-      padding: 30px; /* Increased padding for desktop */
-      border-bottom: 5px solid #d8bfd8; /* Light lavender */
-      animation: bounce 1s infinite;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.1); /* Subtle shadow for pop */
     }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+
+    /* Specific H1 Styling for "Budget Buddy!" title - IMPROVED READABILITY (White Fill) */
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+      color: white; /* Changed to white for better contrast and readability */
+      /* Adding a strong text stroke (outline) for cartoon effect and readability */
+      -webkit-text-stroke: 3px #4ecdc4; /* Teal stroke */
+      text-stroke: 3px #4ecdc4;
+      text-shadow: 6px 6px 0px rgba(0,0,0,0.2); /* Stronger, single shadow for depth */
+      animation: pulseTitle 2s infinite alternate; /* Keep the pulse animation */
     }
+
+    @keyframes pulseTitle {
+      0% { transform: scale(1); text-shadow: 6px 6px 0px rgba(0,0,0,0.2); }
+      100% { transform: scale(1.02); text-shadow: 8px 8px 0px rgba(0,0,0,0.25); }
+    }
+
+
+    h2 {
+      font-size: 3.2em; /* Larger for kids */
+      color: #4ecdc4; /* Teal for secondary headings */
+      margin-top: 40px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    h2::after { /* Wavy underline effect for headings */
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 8px; /* Thicker underline */
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="%23ff6b6b" stroke-width="2"/></svg>') repeat-x center; /* Wavy SVG line */
+      background-size: 100px 8px;
+    }
+
+    p, li {
+      font-family: 'Nunito', sans-serif; /* Readable sans-serif for body */
+      font-size: 1.3em; /* Larger text for readability */
+      color: #555;
+    }
+
+    /* Icons */
+    .fas {
+      margin-right: 10px;
+      color: #ff6b6b; /* Match primary accent color */
+      font-size: 1.2em; /* Slightly larger icons in text */
+    }
+
+    /* Buttons */
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 15px 30px; /* Larger buttons */
+      border-radius: 30px; /* More rounded */
+      text-decoration: none;
+      font-weight: 700; /* Bolder text */
+      transition: all 0.3s ease;
+      margin-top: 25px;
+      font-size: 1.4em; /* Larger font in buttons */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More prominent shadow */
+    }
+
+    .btn-primary {
+      background-color: #8a2be2; /* Blue Violet - a strong lavender/purple */
+      color: white;
+      border: 3px solid #6a0dad; /* Darker purple border */
+    }
+    .btn-primary:hover {
+      background-color: #6a0dad; /* Darker purple on hover */
+      transform: translateY(-5px) rotate(2deg); /* Lift and slight rotate */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary {
+      background-color: #ffe66d; /* Bright yellow */
+      color: #ff6b6b; /* Red text on yellow */
+      border: 3px solid #ff6b6b;
+      margin-left: 20px;
+    }
+    .btn-secondary:hover {
+      background-color: #f7d94c; /* Darker yellow on hover */
+      color: #e63946;
+      transform: translateY(-5px) rotate(-2deg); /* Lift and slight rotate */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Layout */
     .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px; /* Consistent padding */
+      max-width: min(1000px, 90vw); /* Responsive max-width */
+      margin: 50px auto; /* More vertical margin */
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: clamp(30px, 5vw, 50px); /* Responsive gap */
     }
+
+    /* Hero Section */
+    .hero-section {
+      /* Updated background to be primarily lavender */
+      background: linear-gradient(to bottom right, #e6e6fa, #d8bfd8, #b19cd9); /* Light lavender, thistle, medium purple */
+      color: white;
+      text-align: center;
+      padding: clamp(60px, 10vw, 120px) 20px; /* Responsive padding */
+      border-bottom-left-radius: 70px; /* More rounded */
+      border-bottom-right-radius: 70px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25); /* Deeper shadow */
+      animation: fadeInDown 1.2s ease-out;
+      position: relative; /* For background elements */
+      overflow: hidden; /* Hide overflow from playful elements */
+    }
+    /* Playful background elements */
+    .hero-section::before, .hero-section::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      animation: floatBubble 10s infinite ease-in-out alternate;
+    }
+    .hero-section::before {
+      width: 100px; height: 100px;
+      top: 20%; left: 10%;
+      animation-delay: 0s;
+    }
+    .hero-section::after {
+      width: 150px; height: 150px;
+      bottom: 15%; right: 15%;
+      animation-delay: 2s;
+    }
+    @keyframes floatBubble {
+      0% { transform: translateY(0) scale(1); opacity: 0.2; }
+      50% { transform: translateY(-20px) scale(1.05); opacity: 0.3; }
+      100% { transform: translateY(0) scale(1); opacity: 0.2; }
+    }
+
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative; /* Ensure content is above bubbles */
+      z-index: 1;
+    }
+    .hero-section .tagline {
+      font-size: 2em; /* Bigger tagline */
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: #4b0082; /* Darker purple for tagline */
+      text-shadow: 2px 2px 0px rgba(255,255,255,0.3); /* White shadow for contrast */
+    }
+
+    /* Section Styling (Cards) */
     .section {
-      margin: 20px 0; /* Increased margin for desktop */
-      padding: 20px; /* Increased padding for desktop */
-      background: rgba(243, 229, 245, 0.9); /* Semi-transparent light lavender */
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background: #e6e6fa; /* Lavender background */
+      border-radius: 25px; /* Even more rounded corners */
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Deeper, softer shadow */
+      padding: 40px; /* Increased padding */
       width: 100%;
-      max-width: 600px; /* Maintain max-width for desktop */
-      transition: transform 0.3s, box-shadow 0.3s;
+      max-width: 750px; /* Slightly narrower for focus */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease-out forwards;
+      opacity: 0;
+      border: 3px dashed #ffe66d; /* Playful dashed border */
     }
     .section:hover {
-      transform: scale(1.05); /* Enhanced scale effect for desktop */
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-8px) rotate(-1deg); /* More exaggerated lift and rotate */
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     }
-    h2 {
-      color: #9370db; /* Medium purple */
-      font-size: 2.5em; /* Adjusted font size for desktop */
+
+    /* Specific Section Styles */
+    .feature-showcase p {
       text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .process-flow .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); /* Better mobile handling */
+      gap: 30px; /* More space */
+      margin-top: 30px;
+    }
+    .step-item {
+      background-color: #fffacd; /* Light yellow background */
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      border: 2px solid #ff6b6b; /* Red border */
+    }
+    .step-item:hover {
+      transform: translateY(-5px) scale(1.02); /* Lift and slight scale */
+      background-color: #ffe082; /* Brighter yellow on hover */
+    }
+    .step-item i {
+      font-size: 3.5em; /* Larger icons */
+      margin-bottom: 15px;
+      color: #4ecdc4; /* Teal for step icons */
+      animation: bounceIcon 1s infinite alternate; /* Bounce animation for icons */
+    }
+    .step-item h3 {
+      font-size: 1.6em; /* Larger step titles */
+      color: #ff6b6b;
       margin-bottom: 10px;
-      animation: fadeIn 1s ease-in-out;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .step-item p {
+      font-size: 1.1em;
+      color: #666;
     }
-    p, li {
-      font-size: 1.2em; /* Adjusted font size for desktop */
-      line-height: 1.5;
+
+    .cta-section {
+      text-align: center;
+      background-color: #e0f7fa; /* Light blue background for CTA */
+      border: 4px dotted #4ecdc4; /* Dotted teal border */
     }
-    .qr-section img {
+    .cta-section img {
       display: block;
-      margin: 15px auto;
-      border: 2px solid #9370db; /* Medium purple */
-      border-radius: 10px;
-      width: 100%; /* Make QR code responsive */
-      max-width: 160px; /* Limit max width for QR code */
-      transition: transform 0.3s;
-      cursor: pointer; /* Change cursor to pointer */
+      margin: 30px auto;
+      border: 6px solid #ff6b6b; /* Thicker, red border */
+      border-radius: 20px; /* More rounded */
+      width: 100%;
+      max-width: 250px; /* Larger QR */
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
-    .qr-section img:hover {
-      transform: rotate(10deg); /* Rotate effect on hover */
+    .cta-section img:hover {
+      transform: scale(1.1) rotate(8deg); /* More exaggerated rotate */
     }
+
+    .impact-section ul, .principles-section ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    .impact-section li, .principles-section li {
+      background-color: #f0f8ff; /* Very light blue for list items */
+      margin-bottom: 15px; /* More space */
+      padding: 20px 25px; /* More padding */
+      border-left: 8px solid #4ecdc4; /* Thicker teal border */
+      border-radius: 12px; /* More rounded */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .impact-section li:hover, .principles-section li:hover {
+      background-color: #e6f2ff;
+      transform: translateX(5px); /* Slide effect on hover */
+    }
+    .impact-section li i, .principles-section li i {
+      color: #ff6b6b; /* Red icons in lists */
+      margin-right: 15px;
+      font-size: 1.3em;
+    }
+
+    /* Modal */
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
+      display: none;
+      position: fixed;
+      z-index: 1000;
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-      justify-content: center; /* Center the modal */
-      align-items: center; /* Center the modal */
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7); /* Slightly lighter overlay */
+      justify-content: center;
+      align-items: center;
     }
     .modal img {
-      max-width: 90%; /* Responsive image */
-      max-height: 90%; /* Responsive image */
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      border: 8px solid #ffe66d; /* Yellow border for modal image */
     }
+
+    /* Footer */
     footer {
-      background-color: rgba(230, 230, 250, 0.9); /* Semi-transparent lavender color */
-      color: #4b0082; /* Darker shade for contrast */
+      background-color: #4ecdc4; /* Teal footer */
+      color: white;
       text-align: center;
-      padding: 20px; /* Increased padding for desktop */
-      border-radius: 10px;
-      margin-top: 20px;
-      position: relative;
-      animation: slideIn 1s ease-in-out;
+      padding: 40px; /* More padding */
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+      margin-top: 60px;
+      box-shadow: 0 -15px 30px rgba(0,0,0,0.15);
     }
     footer p {
       margin: 0;
-      font-size: 1em; /* Adjusted font size for desktop */
+      font-size: 1.2em;
+      color: rgba(255,255,255,0.9);
     }
-    .fun-facts {
-      background: rgba(243, 229, 245, 0.9); /* Semi-transparent light lavender */
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
+    footer .fas {
+      color: #ff6b6b; /* Red heart icon */
+      font-size: 1.5em;
     }
 
-    /* Fullscreen welcome modal */
+    /* Welcome Modal & Hologram (Adjusted for new aesthetic) */
     .welcome-modal {
-      display: flex; /* Flexbox for centering */
-      position: fixed; /* Stay in place */
-      z-index: 2000; /* Sit on top */
+      display: flex;
+      position: fixed;
+      z-index: 2000;
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
-      justify-content: center; /* Center the content */
-      align-items: center; /* Center the content */
-      color: white; /* Text color */
-      font-size: 3em; /* Large font size */
-      text-align: center; /* Center text */
-      opacity: 1; /* Fully visible */
-      transition: opacity 1s ease; /* Transition for fade out */
-      flex-direction: column; /* Stack items vertically */
+      width: 100%;
+      height: 100%;
+      background-color: rgba(230, 230, 250, 0.95); /* Lavender with transparency */
+      justify-content: center;
+      align-items: center;
+      color: #483D8B; /* Dark lavender text */
+      font-size: clamp(2rem, 8vw, 4rem); /* Responsive font size */
+      text-align: center;
+      opacity: 1;
+      transition: opacity 1s ease;
+      flex-direction: column;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+      font-family: 'Bubblegum Sans', cursive;
     }
 
-    /* Hologram effect */
     .hologram {
-      animation: hologramEffect 1s forwards; /* Hologram effect */
+      animation: hologramEffect 1s forwards;
     }
 
     @keyframes hologramEffect {
       0% {
         transform: scale(1);
         opacity: 1;
+        filter: blur(0px);
+      }
+      50% {
+        filter: blur(8px); /* More blur */
+        opacity: 0.4; /* More transparent */
       }
       100% {
-        transform: scale(0);
+        transform: scale(0.7); /* Shrink more */
         opacity: 0;
+        filter: blur(15px); /* Max blur */
       }
     }
 
-    /* Media Queries for Responsive Design */
-    @media (max-width: 768px) {
-      header {
-        padding: 20px; /* Reduced padding for mobile */
+    /* Kids-Friendly Animations */
+    .bounce-icon {
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .wiggle-icon {
+      animation: wiggle 0.5s infinite alternate;
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .twinkle-icon {
+      animation: twinkle 1.5s infinite alternate;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .spin-icon {
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .beat-icon {
+      animation: beat 1s infinite alternate;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .bounceIcon { /* For step item icons */
+      animation: bounceIcon 1.5s infinite alternate;
+    }
+    @keyframes bounceIcon {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-5px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(-3px); }
+    }
+
+
+    /* General Animations (from previous, adjusted timing) */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-80px); /* More dramatic */
       }
-      .section {
-        margin: 10px 0; /* Reduced margin for mobile */
-        padding: 15px; /* Reduced padding for mobile */
-        max-width: 90%; /* Adjusted max-width for mobile */
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px); /* More dramatic */
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Media Queries for Responsive Design (Adjusted for kids-friendly sizes) */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 100px 15px;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+      .hero-section h1 {
+        font-size: 3.5em;
+      }
+      .hero-section .tagline {
+        font-size: 1.6em;
       }
       h2 {
-        font-size: 2em; /* Further reduce font size for smaller screens */
+        font-size: 2.5em;
+      }
+      .section {
+        padding: 30px;
+        margin: 25px 0;
+        border-radius: 20px;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .btn-primary, .btn-secondary {
+        display: block;
+        margin: 15px auto;
+        font-size: 1.2em;
+        padding: 12px 25px;
+      }
+      .btn-secondary {
+        margin-left: auto;
+      }
+      .welcome-modal {
+        font-size: 3em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section h1 {
+        font-size: 3em;
+      }
+      .hero-section .tagline {
+        font-size: 1.4em;
+      }
+      h2 {
+        font-size: 2em;
       }
       p, li {
-        font-size: 1em; /* Further reduce font size for smaller screens */
+        font-size: 1.1em;
+      }
+      .btn-primary, .btn-secondary {
+        font-size: 1.1em;
+        padding: 10px 20px;
+      }
+      .welcome-modal {
+        font-size: 2.5em;
       }
     }
   </style>
@@ -202,96 +533,93 @@
   </script>
 </head>
 <body>
-  <header>
-    <h1 style="font-size: 3em; color: #4b0082; text-shadow: 2px 2px 4px #e6e6fa;">🐷 Budget Buddy</h1>
-    <p style="font-size: 1.5em; color: #4b0082; font-weight: bold;">Helping Kids Become Money Smart!</p>
+  <header class="hero-section">
+    <div class="hero-content">
+      <!-- H1 color remains white with teal stroke for readability -->
+      <h1><i class="fas fa-piggy-bank bounce-icon"></i> Budget Buddy!</h1>
+      <!-- Tagline color changed to a darker purple for contrast against lavender background -->
+      <p class="tagline">Your Super Fun Money Adventure Starts Here! 🚀</p>
+      <!-- Button colors changed to lavender/purple tones -->
+      <a href="#about" class="btn-primary">Let's Go! <i class="fas fa-arrow-down wiggle-icon"></i></a>
+    </div>
   </header>
 
   <div id="welcomeModal" class="welcome-modal">
-    <div>🎉 Hey there! 🎉<br>Welcome to Budget Buddy! Let's have fun! 💰✨</div>
+    <div style="color: #483D8B;">🎉 Hey there, Buddy! 🎉<br>Welcome to Budget Buddy! Let's have fun! 💰✨</div>
   </div>
 
   <main class="container">
-    <section class="section" id="about">
-      <h2>🌟 What is Budget Buddy?</h2>
-      <p>🎉 It's a super fun web app designed! Learn how to manage your allowance, save for awesome toys, and keep track of your spending. Think of it as your very own piggy bank coach! 💰</p>
+    <section class="section feature-showcase" id="about" style="background: #e6e6fa;"> <!-- Lavender background -->
+      <h2 style="color: #483D8B;"><i class="fas fa-star twinkle-icon"></i> What's Budget Buddy?</h2>
+      <p>It's a super cool web app that helps you become a money wizard! ✨ Learn to save for awesome toys, track your spending, and manage your allowance like a pro. Think of it as your very own piggy bank coach! 🐷</p>
     </section>
 
-    <section class="section" id="how">
-      <h2>📚 How to Use Budget Buddy</h2>
-      <ol>
-        <li><b>✅ Step 1: Go to the App</b>
-          <ul>
-            <li>🌐 Open your web browser</li>
-            <li>👉 Type in: http://budget-buddy-ui.github.io/bb/index.html or scan the QR code below.</li>
-          </ul>
-        </li>
-        <li><b>✅ Step 2: Register (If You’re New)</b>
-          <ul>
-            <li>🆕 Click ✨ New Buddy? Sign Up!</li>
-            <li>✍️ Fill in your nickname, email, and password</li>
-            <li>✅ Click 🌟 Let's Go!</li>
-          </ul>
-        </li>
-        <li><b>Step 3: Log In</b>
-          <ul>
-            <li>📧 Enter your email and password</li>
-            <li>🚪 Click 🚀 Come On In! to go to your dashboard.</li>
-          </ul>
-        </li>
-        <li><b>✅ Step 4: Add Your Allowance</b>
-          <ul>
-            <li>💵 On your dashboard, find the Today's Money Mission! section</li>
-            <li>📝 Type on how much allowance you received.</li>
-          </ul>
-        </li>
-        <li><b>✅ Step 5: Track Your Spending</b>
-          <ul>
-            <li>🛒 Go to the Expenses section</li>
-            <li>📝 Input all of your expenses</li>
-            <li>✅ Click Save and let the app do the math!</li>
-          </ul>
-        </li>
-        <li><b>✅ Step 6: Check Today's Money Story!</b>
-          <ul>
-            <li>📊 Go to the Dashboard</li>
-            <li>📅 See how much you earned, spent, and saved today</li>
-            <li>🏁 Use it to reach your savings goals!</li>
-          </ul>
-        </li>
-        <li><b>✅ Step 7: See Your 📜 My Money Journey History!</b>
-          <ul>
-            <li>📚 Click on History or My Journey section</li>
-            <li>👀 Look at all the things you've earned and spent</li>
-            <li>🎉 See how much progress you've made over time!</li>
-          </ul>
-        </li>
-      </ol>
+    <section class="section process-flow" id="how">
+      <h2><i class="fas fa-gamepad spin-icon"></i> How to Use Budget Buddy!</h2>
+      <div class="steps-grid">
+        <div class="step-item">
+          <i class="fas fa-globe-americas"></i>
+          <h3>Step 1: Find the App!</h3>
+          <p>Open your web browser or scan our magic QR code! 🌐</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-user-plus"></i>
+          <h3>Step 2: New User? Sign Up!</h3>
+          <p>Click "New Buddy?" and tell us your super nickname! ✍️</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-sign-in-alt"></i>
+          <h3>Step 3: Come On In!</h3>
+          <p>Type your secret code (email & password) to enter your money dashboard! 🚪</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-money-bill-wave"></i>
+          <h3>Step 4: Add Your Treasure!</h3>
+          <p>Got allowance? Add your money to your "Today's Money Mission!" 💰</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-shopping-cart"></i>
+          <h3>Step 5: Track Your Spends!</h3>
+          <p>Bought something fun? Write it down in the "Expenses" section! 🛒</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-chart-line"></i>
+          <h3>Step 6: Check Your Score!</h3>
+          <p>See how much you earned, spent, and saved today on your dashboard! 📊</p>
+        </div>
+        <div class="step-item">
+          <i class="fas fa-book"></i>
+          <h3>Step 7: See Your Journey!</h3>
+          <p>Look at your "My Money Journey History" to see how far you've come! 🎉</p>
+        </div>
+      </div>
     </section>
 
-    <section class="section qr-section" id="qr">
-      <h2>📱 Try Budget Buddy Now!</h2>
-      <p>Scan this code with your phone or tablet to get started:</p>
+    <section class="section cta-section" id="qr">
+      <h2><i class="fas fa-mobile-alt"></i> Use Budget Buddy Now!</h2>
+      <p>Scan this super cool code with your phone or tablet to start your money adventure!</p>
       <img src="img/QR.jpg" alt="Budget Buddy QR Code" onclick="openModal()" />
+      <a href="http://budget-buddy-ui.github.io/bb/index.html" target="_blank" class="btn-secondary">Go to Budget Buddy Online! <i class="fas fa-external-link-alt"></i></a>
     </section>
 
-    <section class="section" id="questions">
-      <h2>❓Questions to Think About</h2>
+    <section class="section impact-section" id="questions">
+      <h2><i class="fas fa-question-circle"></i> Money Questions!</h2>
+      <p>Let's think about money like a game!</p>
       <ul>
-        <li>What do you want to save up for? 🎁</li>
-        <li>What was your smartest purchase? 🧠</li>
-        <li>If you had 100 coins, what would you do? 💰</li>
-        <li>Can you beat last week's savings? 🏆</li>
-        <li>What's a cool money goal to reach this month? 🌈</li>
+        <li><i class="fas fa-gift"></i> What awesome thing do you want to save for?</li>
+        <li><i class="fas fa-brain"></i> What was the smartest thing you ever bought?</li>
+        <li><i class="fas fa-coins"></i> If you found 100 shiny coins, what would you do?</li>
+        <li><i class="fas fa-trophy"></i> Can you save more than last week? Challenge accepted!</li>
+        <li><i class="fas fa-rainbow"></i> What's your super money goal for this month?</li>
       </ul>
     </section>
 
-    <section class="section fun-facts">
-      <h2>🎉 Facts About Money!</h2>
+    <section class="section principles-section">
+      <h2><i class="fas fa-lightbulb"></i> Money Facts!</h2>
       <ul>
-        <li>Did you know that saving just a little bit each week can add up to a lot? 💸</li>
-        <li>Every peso saved is a step closer to your dream toy! 🧸</li>
-        <li>Money can be fun to manage when you have a plan! 📊</li>
+        <li><i class="fas fa-piggy-bank"></i> Saving even a little bit each week makes a BIG pile of money! 💸</li>
+        <li><i class="fas fa-dollar-sign"></i> Every coin you save is a step closer to your dream toy! 🧸</li>
+        <li><i class="fas fa-chart-pie"></i> Managing money is like a fun puzzle, and you're the master! 🧩</li>
       </ul>
     </section>
   </main>
@@ -301,8 +629,7 @@
   </div>
 
   <footer>
-    <p>Made with 💙 by Budget Buddy for smart little savers everywhere!</p>
+    <p>Made with <i class="fas fa-heart beat-icon"></i> by Budget Buddy for all the super smart money explorers!</p>
   </footer>
 </body>
 </html>
-
