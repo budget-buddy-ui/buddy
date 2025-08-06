@@ -331,8 +331,8 @@
       font-size: 1.5em;
     }
 
-    /* Loading Intro Styles */
-    .loading-intro {
+    /* Welcome Modal & Hologram (Adjusted for new aesthetic) */
+    .welcome-modal {
       display: flex;
       position: fixed;
       z-index: 2000;
@@ -340,97 +340,88 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom right, #e6e6fa, #c9ffbf, #a8e0ff); /* Match body background */
+      background-color: rgba(0, 0, 0, 0.9); /* Darker, more cyber background */
       justify-content: center;
       align-items: center;
-      color: #483D8B; /* Dark lavender text */
+      color: #e0ffff; /* Softer, light cyan/aqua for text */
       font-size: clamp(2rem, 8vw, 4rem); /* Responsive font size */
       text-align: center;
       opacity: 1;
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 1s ease;
       flex-direction: column;
-      font-family: 'Bubblegum Sans', cursive;
-      overflow: hidden; /* Hide overflow from animations */
+      text-shadow: 0 0 10px rgba(224, 255, 255, 0.7), 0 0 20px rgba(224, 255, 255, 0.5); /* Softer glow */
+      font-family: 'Bubblegum Sans', nunito; /* Keeping playful font for welcome message */
     }
 
-    .loading-intro.fade-out {
-      opacity: 0;
-      transform: scale(0.9);
+    .hologram {
+      animation: hologramEffect 1s forwards;
     }
 
-    .loading-intro .message {
+    @keyframes hologramEffect {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+      }
+      50% {
+        filter: blur(8px); /* More blur */
+        opacity: 0.4; /* More transparent */
+      }
+      100% {
+        transform: scale(0.7); /* Shrink more */
+        opacity: 0;
+        filter: blur(15px); /* Max blur */
+      }
+    }
+
+    /* Cyber Loading Bar Styles */
+    .loading-bar-container {
+      width: 80%;
+      max-width: 400px;
+      height: 20px;
+      background-color: rgba(0, 255, 204, 0.1); /* Light cyber green transparent background */
+      border: 2px solid #00ffcc; /* Cyber green border */
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 30px;
+      box-shadow: 0 0 15px #00ffcc; /* Glowing shadow */
+    }
+
+    .loading-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #00ffcc, #00ccff); /* Gradient cyber colors */
+      border-radius: 8px;
+      animation: fillLoadingBar 2s forwards; /* Animation to fill the bar */
       position: relative;
-      z-index: 1;
-      text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-      margin-bottom: 40px; /* Space between message and loader */
+      overflow: hidden;
     }
 
-    /* Cyber Loading Circle */
-    .cyber-loader {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 5px solid rgba(78, 205, 196, 0.3); /* Light teal border */
-      border-top-color: #4ecdc4; /* Teal top border */
-      animation: spin 1.2s linear infinite, pulseBorder 1.5s infinite alternate;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 20px rgba(78, 205, 196, 0.5); /* Glow effect */
-    }
-
-    .cyber-loader::before {
+    .loading-bar::after {
       content: '';
       position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px dotted #ff6b6b; /* Dotted red inner circle */
-      animation: spinReverse 1.8s linear infinite;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.1) 5px,
+        transparent 5px,
+        transparent 10px
+      ); /* Scanline effect */
+      animation: scanline 0.5s infinite linear;
     }
 
-    .cyber-loader::after {
-      content: '💰'; /* Money bag emoji */
-      position: absolute;
-      font-size: 3em;
-      animation: beat 1s infinite alternate; /* Heartbeat for the emoji */
+    @keyframes fillLoadingBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes spinReverse {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(-360deg); }
-    }
-
-    @keyframes pulseBorder {
-      0% { border-top-color: #4ecdc4; }
-      50% { border-top-color: #ff6b6b; } /* Change color during pulse */
-      100% { border-top-color: #4ecdc4; }
-    }
-
-    /* Playful background elements for loading intro */
-    .loading-intro::before, .loading-intro::after {
-      content: '';
-      position: absolute;
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      animation: floatBubble 10s infinite ease-in-out alternate;
-      z-index: 0;
-    }
-    .loading-intro::before {
-      width: 120px; height: 120px;
-      top: 15%; left: 5%;
-      animation-delay: 0s;
-    }
-    .loading-intro::after {
-      width: 180px; height: 180px;
-      bottom: 10%; right: 8%;
-      animation-delay: 2s;
+    @keyframes scanline {
+      0% { background-position: 0 0; }
+      100% { background-position: 10px 10px; }
     }
 
 
@@ -462,11 +453,10 @@
     .spin-icon {
       animation: spin 2s linear infinite;
     }
-    /* This spin animation is now used by .cyber-loader */
-    /* @keyframes spin {
+    @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
-    } */
+    }
 
     .beat-icon {
       animation: beat 1s infinite alternate;
@@ -543,19 +533,8 @@
       .btn-secondary {
         margin-left: auto;
       }
-      .loading-intro {
+      .welcome-modal {
         font-size: 3em;
-      }
-      .cyber-loader {
-        width: 80px;
-        height: 80px;
-      }
-      .cyber-loader::before {
-        width: 60px;
-        height: 60px;
-      }
-      .cyber-loader::after {
-        font-size: 2.5em;
       }
     }
 
@@ -576,19 +555,8 @@
         font-size: 1.1em;
         padding: 10px 20px;
       }
-      .loading-intro {
+      .welcome-modal {
         font-size: 2.5em;
-      }
-      .cyber-loader {
-        width: 60px;
-        height: 60px;
-      }
-      .cyber-loader::before {
-        width: 40px;
-        height: 40px;
-      }
-      .cyber-loader::after {
-        font-size: 2em;
       }
     }
   </style>
@@ -601,21 +569,25 @@
       document.getElementById("qrModal").style.display = "none";
     }
 
-    function showLoadingIntro() {
-      const loadingIntro = document.getElementById("loadingIntro");
-      loadingIntro.style.display = "flex"; // Show the loading intro
+    function showWelcome() {
+      const welcomeModal = document.getElementById("welcomeModal");
+      const loadingBar = document.getElementById("loadingBar");
 
-      // After a delay, fade out the loading intro
+      welcomeModal.style.display = "flex"; // Show the welcome modal
+
+      // Animate the loading bar
+      loadingBar.style.animation = "fillLoadingBar 2s forwards";
+
       setTimeout(() => {
-        loadingIntro.classList.add("fade-out");
-        // After fade out, hide it completely
+        welcomeModal.classList.add("hologram"); // Add hologram effect
         setTimeout(() => {
-          loadingIntro.style.display = "none";
-        }, 1000); // Matches the fade-out transition duration
-      }, 1500); // Duration to show the loading message and animation
+          welcomeModal.style.display = "none"; // Hide the welcome modal after the effect
+          loadingBar.style.animation = ""; // Reset animation for next time (if applicable)
+        }, 1000); // Duration of the hologram effect
+      }, 2000); // Duration of the loading bar animation before hologram starts
     }
 
-    window.onload = showLoadingIntro; // Show loading intro on page load
+    window.onload = showWelcome; // Show welcome message on page load
   </script>
 </head>
 <body>
@@ -630,9 +602,11 @@
     </div>
   </header>
 
-  <div id="loadingIntro" class="loading-intro">
-    <div class="message">🎉 Hey there! 🎉<br>Welcome to Budget Buddy! Let's have fun! 💰✨</div>
-    <div class="cyber-loader"></div>
+  <div id="welcomeModal" class="welcome-modal">
+    <div style="color: #e0ffff;">🎉 Hey there! 🎉<br>Welcome to Budget Buddy! Let's have fun! 💰✨</div>
+    <div class="loading-bar-container">
+      <div id="loadingBar" class="loading-bar"></div>
+    </div>
   </div>
 
   <main class="container">
@@ -651,7 +625,7 @@
         </div>
         <div class="step-item">
           <i class="fas fa-user-plus"></i>
-          <h3>Step 2: New Buddy? Sign Up!</h3>
+          <h3>Step 2: New User? Sign Up!</h3>
           <p>Click "New Buddy?" and tell us your super nickname! ✍️</p>
         </div>
         <div class="step-item">
@@ -720,4 +694,3 @@
   </footer>
 </body>
 </html>
-
